@@ -13,6 +13,6 @@ export class Tab2Page {
     console.log("neviando correo");
   }
   abrirRegistro(registro: Registro){
-    console.log("registro", registro);
+    this.dataLocal.guardarRegistro(registro.format, registro.text);
   }
 }
