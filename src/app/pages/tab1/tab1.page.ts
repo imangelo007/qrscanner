@@ -7,11 +7,12 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  swiperOpts = {allowSliderPrev: false, allowSliderNext: false};
+  swiperOpts = {allowSlidePrev: false, allowSlideNext: false};
 
   constructor(private barcodeScanner: BarcodeScanner) { }
   
-  ionWiewWillEnter(){
+  ionViewWillEnter(){
+    console.log('ionWiewWillEnter');
     this.scan();
   }
 
