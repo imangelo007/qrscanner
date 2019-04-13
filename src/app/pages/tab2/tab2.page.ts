@@ -12,7 +12,8 @@ export class Tab2Page {
   enviarCorreo(){
     console.log("neviando correo");
   }
+
   abrirRegistro(registro: Registro){
-    this.dataLocal.guardarRegistro(registro.format, registro.text);
+    this.dataLocal.abrirRegistro(registro);
   }
 }
