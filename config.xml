@@ -83,6 +83,6 @@
     <plugin name="cordova-plugin-ionic-webview" spec="^3.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="phonegap-plugin-barcodescanner" spec="8.0.1" />
-    <allow-navigation href="http://192.168.0.165:8100" sessionid="9f5f578f" />
+    <allow-navigation href="http://192.168.0.165:8100" sessionid="5c247023" />
     <engine name="android" spec="7.1.4" />
 </widget>
