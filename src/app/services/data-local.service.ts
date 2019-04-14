@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { NavController } from '@ionic/angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { File } from '@ionic-native/file/ngx';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class DataLocalService {
     private storage: Storage, 
     private nacCtrl: NavController, 
     private iab: InAppBrowser,
-    private file: File
+    private file: File,
+    private emailComposer: EmailComposer
     ) {
     this.cargarStorage();
   }
@@ -58,20 +60,30 @@ export class DataLocalService {
   }
 
   crearArchivoFisico(text: string){
-    this.file.checkFile(this.file.dataDirectory, 'registro.csv').then(existe => {
+    this.file.checkFile( this.file.dataDirectory, 'registro.csv' ).then( existe => {
       return this.escribirEnArchivo(text);
     }).catch(err => {
       return this.file.createFile(this.file.dataDirectory, 'registro.csv', false).then(creado => {
-        this.escribirEnArchivo(text);
+        return this.escribirEnArchivo(text);
       }).catch(err2 => {
-        console.log("no se pudo crear el archivo");
+        console.log("no se pudo crear el archivo", err2);
       })
     })
   }
 
   async escribirEnArchivo(text: string){
     await this.file.writeExistingFile(this.file.dataDirectory, 'registros.csv', text);
-    console.log(this.file.dataDirectory);
+    const archivo = `${this.file.dataDirectory}/registro.csv`;
     console.log("archivo creado");
+
+    const email = {
+      to: 'angelo2301@hotmail.es',
+      attachments: [archivo],
+      subject: 'Backup de scans',
+      body: 'Probando envio de correo',
+      isHtml: true
+    }
+
+    this.emailComposer.open(email);
   }
 }
