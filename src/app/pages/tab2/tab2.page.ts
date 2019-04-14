@@ -10,7 +10,7 @@ import { Registro } from 'src/app/models/registro.model';
 export class Tab2Page {
   constructor(public dataLocal: DataLocalService){}
   enviarCorreo(){
-    console.log("neviando correo");
+    this.dataLocal.enviarCorreo();
   }
 
   abrirRegistro(registro: Registro){
